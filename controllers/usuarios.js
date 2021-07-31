@@ -1,7 +1,5 @@
 const { response } = require('express');
 
-
-
 const getUsuarios = (req, res = response) => {
 
 	const { q, nombre = 'no name', apiKey, page = '1', limit } = req.query;

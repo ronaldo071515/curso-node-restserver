@@ -1,6 +1,4 @@
 
-
-
 const { Router } = require('express');
 const { getUsuarios, 
 		putUsuarios, 
