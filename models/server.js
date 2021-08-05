@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const { dbConection } = require('../database/config');
 
 
 class Server {
@@ -9,6 +10,8 @@ class Server {
 		this.port = process.env.PORT;
 		this.usuariosPath = '/api/usuarios';
 
+		//Conectar a bd mongoDB
+		this.conectarDB();
 		
 		//middlewares
 		this.middlewares();
@@ -17,6 +20,11 @@ class Server {
 		this.routes();
 
 	}
+
+	async conectarDB() {
+		await dbConection()
+	}
+
 	//metodo para middlewares
 	middlewares () {
 
@@ -32,11 +40,9 @@ class Server {
 
 	//creo un metodo para las rutas
 	routes() {
-		
 		this.app.use(this.usuariosPath, require('../routes/usuarios'));
-
-
 	}
+	
 	//listo el puerto
 	listen() {
 		this.app.listen( this.port, ()=> {
