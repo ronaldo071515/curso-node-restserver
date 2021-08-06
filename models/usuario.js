@@ -41,7 +41,8 @@ UsuarioSchema.methods.toJSON = function () {
 
 	//con esta opcion lo que hago es sacar algunas propiedades el objeto
 	//y usamos el operador res(...) para unificarlos en uno solo y se llamara usuario
-	const { __v, password, ...usuario } = this.toObject();
+	const { __v, password, _id, ...usuario } = this.toObject();
+	usuario.uid = _id;
 	return usuario;
 }
 
