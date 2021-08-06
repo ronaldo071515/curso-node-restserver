@@ -76,13 +76,15 @@ const postUsuarios = async(req, res) => {
 const deleteUsuarios = async(req, res) => {
 
 	const { id } = req.params;
+	//extraigo el uid que biene en el request.uid
+/* 	const uid = req.uid; */
 
 	//Fisicamente lo borramos
 	/* const usuario = await Usuario.findByIdAndDelete(id); */
 	//Eliminar de forma segura para no perder la entidad referencial en la bd
 	const usuario = await Usuario.findByIdAndUpdate( id, { estado: false } );
 
-	res.json({usuario});
+	res.json(usuario);
 }
 
 const patchUsuarios = (req, res) => {
