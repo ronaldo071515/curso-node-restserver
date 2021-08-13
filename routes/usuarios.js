@@ -23,14 +23,7 @@ const router = Router();
 
 router.get('/', getUsuarios);
 
-router.put('/:id', [
-	check('id', 'No es un ID Válido').isMongoId(),
-	check('id').custom( validarId ),
-	check('rol').custom( esRolValido ),
-	validarCampos
-], putUsuarios);
-
-	/* check('rol', 'No es un rol válido').isIn(['ADMIN_ROLE', 'USER_ROLE']), */
+/* check('rol', 'No es un rol válido').isIn(['ADMIN_ROLE', 'USER_ROLE']), */
 router.post('/', [ 
 	check('nombre', 'El nombre es obligatorio').not().isEmpty(),
 	check('password', 'El password es obligatorio y mas de 6 letras').isLength({ min: 6 }),
@@ -39,7 +32,14 @@ router.post('/', [
 	check('rol').custom( esRolValido ),
 	validarCampos
 ] ,postUsuarios);
-
+/*  */
+router.put('/:id', [
+	check('id', 'No es un ID Válido').isMongoId(),
+	check('id').custom( validarId ),
+	check('rol').custom( esRolValido ),
+	validarCampos
+], putUsuarios);
+/*  */
 router.delete('/:id', [
 	validarJWT,
 	/* esAdminRol, */
@@ -48,7 +48,7 @@ router.delete('/:id', [
 	check('id').custom( validarId ),
 	validarCampos
 ], deleteUsuarios);
-
+/*  */
 router.patch('/', patchUsuarios);
 
 module.exports = router;

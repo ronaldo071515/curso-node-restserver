@@ -8,8 +8,14 @@ class Server {
 	constructor () {
 		this.app = express();
 		this.port = process.env.PORT;
-		this.usuariosPath = '/api/usuarios';
-		this.authPath = '/api/auth';
+
+		this.paths = {
+			authPath: '/api/auth',
+			buscarPath: '/api/buscar',
+			categoriasPath: '/api/categorias',
+			productosPath: '/api/productos',
+			usuariosPath: '/api/usuarios'
+		}
 
 
 		//Conectar a bd mongoDB
@@ -42,8 +48,11 @@ class Server {
 
 	//creo un metodo para las rutas
 	routes() {
-		this.app.use(this.authPath, require('../routes/auth'));
-		this.app.use(this.usuariosPath, require('../routes/usuarios'));
+		this.app.use(this.paths.authPath, require('../routes/auth'));
+		this.app.use(this.paths.buscarPath, require('../routes/buscar'));
+		this.app.use(this.paths.categoriasPath, require('../routes/categorias'));
+		this.app.use(this.paths.usuariosPath, require('../routes/usuarios'));
+		this.app.use(this.paths.productosPath, require('../routes/productos'));
 	}
 	
 	//listo el puerto
