@@ -27,7 +27,6 @@ const cargarArchivo = async( req, res = response ) => {
 
 }
 
-
 const actualizarImagen = async( req, res ) => {
 
 	const { id, coleccion } = req.params;
