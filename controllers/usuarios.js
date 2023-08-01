@@ -68,7 +68,7 @@ const postUsuarios = async(req, res) => {
 	await usuario.save();
 
 	res.json({
-		msg: 'POST sucessfully - Controller',
+		msg: 'Usuario creado correctamente',
 		usuario
 	});
 }
